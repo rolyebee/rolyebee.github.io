@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"github.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="关于sharding-jdbc-demo shardingjdbc配置：5.0相关配置不适用于4.0，例如： 1234# 数据库连接池类名称spring.shardingsphere.datasource.common.type&#x3D;  # 数据库驱动类名spring.shardingsphere.datasource.common.driver-class-name&#x3D;  Jar包版本： 12345&amp;">
+  <meta name="description" content="Why is Lettuce the default Redis client used in Spring Session Redis? Jedis is a straight-forward Redis client that is not thread-safe when applications want to share a single Jedis instance across mu">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sharding-jdbc">
-<meta property="og:url" content="https://github.com/rolyebee/rolyebee.github.io.git/2021/04/18/sharding-jdbc/index.html">
+<meta property="og:title" content="Why is Lettuce the default Redis client used in Spring Session Redis?">
+<meta property="og:url" content="https://github.com/rolyebee/rolyebee.github.io.git/2021/04/27/Redis/index.html">
 <meta property="og:site_name" content="rolyebee">
-<meta property="og:description" content="关于sharding-jdbc-demo shardingjdbc配置：5.0相关配置不适用于4.0，例如： 1234# 数据库连接池类名称spring.shardingsphere.datasource.common.type&#x3D;  # 数据库驱动类名spring.shardingsphere.datasource.common.driver-class-name&#x3D;  Jar包版本： 12345&amp;">
+<meta property="og:description" content="Why is Lettuce the default Redis client used in Spring Session Redis? Jedis is a straight-forward Redis client that is not thread-safe when applications want to share a single Jedis instance across mu">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-04-18T14:30:45.000Z">
-<meta property="article:modified_time" content="2021-04-18T14:44:20.095Z">
+<meta property="article:published_time" content="2021-04-27T09:50:35.000Z">
+<meta property="article:modified_time" content="2021-04-27T09:58:58.573Z">
 <meta property="article:author" content="rolyebee">
-<meta property="article:tag" content="sharding-jdbc">
+<meta property="article:tag" content="redis">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://github.com/rolyebee/rolyebee.github.io.git/2021/04/18/sharding-jdbc/">
+<link rel="canonical" href="https://github.com/rolyebee/rolyebee.github.io.git/2021/04/27/Redis/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>sharding-jdbc | rolyebee</title>
+  <title>Why is Lettuce the default Redis client used in Spring Session Redis? | rolyebee</title>
   
 
 
@@ -166,7 +166,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://github.com/rolyebee/rolyebee.github.io.git/2021/04/18/sharding-jdbc/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/rolyebee/rolyebee.github.io.git/2021/04/27/Redis/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/1.jpg">
@@ -179,7 +179,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          sharding-jdbc
+          Why is Lettuce the default Redis client used in Spring Session Redis?
         </h1>
 
         <div class="post-meta">
@@ -190,7 +190,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-04-18 22:30:45 / Modified: 22:44:20" itemprop="dateCreated datePublished" datetime="2021-04-18T22:30:45+08:00">2021-04-18</time>
+              <time title="Created: 2021-04-27 17:50:35 / Modified: 17:58:58" itemprop="dateCreated datePublished" datetime="2021-04-27T17:50:35+08:00">2021-04-27</time>
             </span>
 
           
@@ -204,16 +204,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="关于sharding-jdbc-demo"><a href="#关于sharding-jdbc-demo" class="headerlink" title="关于sharding-jdbc-demo"></a>关于sharding-jdbc-demo</h3><ul>
-<li><p>shardingjdbc配置：5.0相关配置不适用于4.0，例如：</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 数据库连接池类名称</span></span><br><span class="line"><span class="meta">spring.shardingsphere.datasource.common.type</span>=  <span class="string"></span></span><br><span class="line"><span class="comment"># 数据库驱动类名</span></span><br><span class="line"><span class="meta">spring.shardingsphere.datasource.common.driver-class-name</span>= <span class="string"></span></span><br></pre></td></tr></table></figure></li>
-<li><p>Jar包版本：</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&lt;dependency&gt;</span></span><br><span class="line">    <span class="attr">&lt;groupId&gt;org.apache.shardingsphere&lt;/groupId&gt;</span></span><br><span class="line">    <span class="attr">&lt;artifactId&gt;sharding-jdbc-spring-boot-starter&lt;/artifactId&gt;</span></span><br><span class="line">    <span class="attr">&lt;version&gt;4.0.0-RC1&lt;/version&gt;</span></span><br><span class="line"><span class="attr">&lt;/dependency&gt;</span></span><br></pre></td></tr></table></figure></li>
-<li><p>实体类ID为Long类型，否则SNOWFLAKE算法无效</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Course</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Long cid;</span><br><span class="line">    <span class="keyword">private</span> String cname;</span><br><span class="line">    <span class="keyword">private</span> Long userId;</span><br><span class="line">    <span class="keyword">private</span> String status;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>单元测试@RunWith非必须</p>
-</li>
-</ul>
+        <h3 id="Why-is-Lettuce-the-default-Redis-client-used-in-Spring-Session-Redis"><a href="#Why-is-Lettuce-the-default-Redis-client-used-in-Spring-Session-Redis" class="headerlink" title="Why is Lettuce the default Redis client used in Spring Session Redis?"></a>Why is Lettuce the default Redis client used in Spring Session Redis?</h3><blockquote>
+<p>Jedis is a straight-forward Redis client that is not thread-safe when applications want to share a single Jedis instance across multiple threads. The approach to use Jedis in a multi-threaded environment is to use connection pooling. Each concurrent thread using Jedis gets its own Jedis instance for the duration of Jedis interaction. Connection pooling comes at the cost of a physical connection per Jedis instance which increases the number of Redis connections.</p>
+</blockquote>
+<blockquote>
+<p>Lettuce is built on netty and connection instances (StatefulRedisConnection) can be shared across multiple threads. So a multi-threaded application can use a single connection<br>regardless the number of concurrent threads that interact with Lettuce.</p>
+</blockquote>
+<blockquote>
+<p>Limiting the number of connections can be required when using connection limits on Redis or when the number of connections grows beyond a reasonable connection count.</p>
+</blockquote>
+<p>Jedis是直接的Redis客户端，当应用程序要跨多个线程共享单个Jedis实例时，它不是线程安全的。在多线程环境中使用Jedis的方法是使用连接池。在Jedis交互期间，每个使用Jedis的并发线程都会获得自己的Jedis实例。连接池是以每个Jedis实例的物理连接为代价的，这增加了Redis连接的数量。</p>
+<p>生菜建立在netty之上，并且连接实例（StatefulRedisConnection）可以在多个线程之间共享。因此，多线程应用程序可以使用单个连接<br>无论与Lettuce交互的并发线程数如何。</p>
+<p>当在Redis上使用连接限制或连接数超过合理的连接数时，可能需要限制连接数。</p>
 
     </div>
 
@@ -223,7 +225,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/sharding-jdbc/" rel="tag"># sharding-jdbc</a>
+              <a href="/tags/redis/" rel="tag"># redis</a>
           </div>
 
         
@@ -232,13 +234,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/04/18/hello-world/" rel="prev" title="home">
-      <i class="fa fa-chevron-left"></i> home
+    <a href="/2021/04/18/sharding-jdbc/" rel="prev" title="sharding-jdbc">
+      <i class="fa fa-chevron-left"></i> sharding-jdbc
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/04/27/Redis/" rel="next" title="Why is Lettuce the default Redis client used in Spring Session Redis?">
-      Why is Lettuce the default Redis client used in Spring Session Redis? <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -297,7 +296,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8Esharding-jdbc-demo"><span class="nav-number">1.</span> <span class="nav-text">关于sharding-jdbc-demo</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-is-Lettuce-the-default-Redis-client-used-in-Spring-Session-Redis"><span class="nav-number">1.</span> <span class="nav-text">Why is Lettuce the default Redis client used in Spring Session Redis?</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

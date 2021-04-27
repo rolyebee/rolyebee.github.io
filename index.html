@@ -160,6 +160,76 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://github.com/rolyebee/rolyebee.github.io.git/2021/04/27/Redis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/1.jpg">
+      <meta itemprop="name" content="rolyebee">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="rolyebee">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/27/Redis/" class="post-title-link" itemprop="url">Why is Lettuce the default Redis client used in Spring Session Redis?</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-04-27 17:50:35 / Modified: 17:58:58" itemprop="dateCreated datePublished" datetime="2021-04-27T17:50:35+08:00">2021-04-27</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="Why-is-Lettuce-the-default-Redis-client-used-in-Spring-Session-Redis"><a href="#Why-is-Lettuce-the-default-Redis-client-used-in-Spring-Session-Redis" class="headerlink" title="Why is Lettuce the default Redis client used in Spring Session Redis?"></a>Why is Lettuce the default Redis client used in Spring Session Redis?</h3><blockquote>
+<p>Jedis is a straight-forward Redis client that is not thread-safe when applications want to share a single Jedis instance across multiple threads. The approach to use Jedis in a multi-threaded environment is to use connection pooling. Each concurrent thread using Jedis gets its own Jedis instance for the duration of Jedis interaction. Connection pooling comes at the cost of a physical connection per Jedis instance which increases the number of Redis connections.</p>
+</blockquote>
+<blockquote>
+<p>Lettuce is built on netty and connection instances (StatefulRedisConnection) can be shared across multiple threads. So a multi-threaded application can use a single connection<br>regardless the number of concurrent threads that interact with Lettuce.</p>
+</blockquote>
+<blockquote>
+<p>Limiting the number of connections can be required when using connection limits on Redis or when the number of connections grows beyond a reasonable connection count.</p>
+</blockquote>
+<p>Jedis是直接的Redis客户端，当应用程序要跨多个线程共享单个Jedis实例时，它不是线程安全的。在多线程环境中使用Jedis的方法是使用连接池。在Jedis交互期间，每个使用Jedis的并发线程都会获得自己的Jedis实例。连接池是以每个Jedis实例的物理连接为代价的，这增加了Redis连接的数量。</p>
+<p>生菜建立在netty之上，并且连接实例（StatefulRedisConnection）可以在多个线程之间共享。因此，多线程应用程序可以使用单个连接<br>无论与Lettuce交互的并发线程数如何。</p>
+<p>当在Redis上使用连接限制或连接数超过合理的连接数时，可能需要限制连接数。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://github.com/rolyebee/rolyebee.github.io.git/2021/04/18/sharding-jdbc/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -351,12 +421,12 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
